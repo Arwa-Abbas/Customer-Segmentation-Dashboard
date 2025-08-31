@@ -3,3 +3,7 @@ pandas
 plotly
 scikit-learn
 numpy
+statsmodels
+matplotlib
+seaborn
+Pillow
