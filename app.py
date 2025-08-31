@@ -341,10 +341,13 @@ with st.sidebar:
             <h2 style="margin: 0; color: white; font-size: 1.4rem;">Controls</h2>
         </div>
     """, unsafe_allow_html=True)
-    
-    # Data Filters
-    st.markdown("### Data Filters")
-    
+
+    # Refresh Data Button
+    if st.button("Refresh Analysis", help="Recalculate all metrics and segments"):
+        st.cache_data.clear()
+        st.experimental_rerun()  # <-- use experimental_rerun instead of st.rerun()
+
+    # Now define your sliders AFTER the refresh button
     income_range = st.slider(
         "Annual Income Range (k$)",
         int(df[income_col].min()),
@@ -352,7 +355,7 @@ with st.sidebar:
         (int(df[income_col].min()), int(df[income_col].max())),
         help="Filter customers by income range"
     )
-    
+
     age_range = st.slider(
         "Age Range",
         int(df[age_col].min()),
@@ -360,7 +363,7 @@ with st.sidebar:
         (int(df[age_col].min()), int(df[age_col].max())),
         help="Filter customers by age range"
     )
-    
+
     spending_range = st.slider(
         "Spending Score Range",
         int(df[score_col].min()),
@@ -368,14 +371,14 @@ with st.sidebar:
         (int(df[score_col].min()), int(df[score_col].max())),
         help="Filter customers by spending behavior"
     )
-    
+
     genders = st.multiselect(
         "Gender Selection",
         df[gender_col].unique(),
         df[gender_col].unique(),
         help="Select gender categories to include"
     )
-    
+
     st.markdown("### ML Configuration")
     
     n_clusters = st.slider(
