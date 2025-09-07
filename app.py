@@ -529,7 +529,7 @@ st.markdown("""
 with st.sidebar:
     st.markdown("""
         <div class="sidebar-header">
-            <h2 style="margin: 0; color: white; font-size: 1.5rem; font-weight: 700;">🎛️ Control Center</h2>
+            <h2 style="margin: 0; color: white; font-size: 1.5rem; font-weight: 700;">Control Center</h2>
             <p style="margin: 5px 0 0 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">Configure your analysis</p>
         </div>
     """, unsafe_allow_html=True)
@@ -667,7 +667,7 @@ with col5:
 st.markdown("## Customer Analytics Overview")
 
 # Create tabs for different analysis views
-tab1, tab2, tab3, tab4 = st.tabs(["🔍 Segmentation", "👥 Demographics", "📊 Trends", "🗃️ Data Explorer"])
+tab1, tab2, tab3, tab4 = st.tabs(["Segmentation", "Demographics", "Trends", "Data Explorer"])
 
 with tab1:
     col_seg1, col_seg2 = st.columns([2, 1])
@@ -789,23 +789,19 @@ with tab1:
             if segment['avg_income'] > df_filtered[income_col].mean() and segment['avg_score'] > df_filtered[score_col].mean():
                 segment_type = "Premium"
                 segment_color = "#ff6b35"
-                segment_icon = "💎"
             elif segment['avg_income'] > df_filtered[income_col].mean() and segment['avg_score'] <= df_filtered[score_col].mean():
                 segment_type = "Conservative"
                 segment_color = "#4ecdc4"
-                segment_icon = "🏦"
             elif segment['avg_income'] <= df_filtered[income_col].mean() and segment['avg_score'] > df_filtered[score_col].mean():
                 segment_type = "Aspirational"
                 segment_color = "#f7931e"
-                segment_icon = "🌟"
             else:
                 segment_type = "Budget-Conscious"
                 segment_color = "#9b59b6"
-                segment_icon = "💰"
             
             st.markdown(f"""
                 <div class="segment-card">
-                    <div class="segment-header">{segment_icon} Segment {segment['id']} - {segment_type}</div>
+                    <div class="segment-header"> Segment {segment['id']} - {segment_type}</div>
                     <div class="segment-stats">
                         <strong>Size:</strong> {segment['size']} customers ({segment['percentage']:.1f}%)<br>
                         <strong>Avg Income:</strong> ${segment['avg_income']:.0f}k<br>
@@ -1068,7 +1064,7 @@ with tab3:
         
         for idx, row in segment_stats_norm.iterrows():
             values = [row['age_norm'], row['income_norm'], row['score_norm']]
-            values += values[:1]  # Complete the circle
+            values += values[:1]  
             
             fig_radar.add_trace(go.Scatterpolar(
                 r=values,
@@ -1564,22 +1560,18 @@ with col_perf2:
         if avg_income_cluster > df_filtered[income_col].mean() and avg_score_cluster > df_filtered[score_col].mean():
             segment_type = "Premium Customers"
             segment_color = "#ff6b35"
-            segment_icon = "💎"
             segment_desc = "High income, high spending"
         elif avg_income_cluster > df_filtered[income_col].mean() and avg_score_cluster <= df_filtered[score_col].mean():
             segment_type = "Conservative Spenders"
             segment_color = "#4ecdc4"
-            segment_icon = "🏦"
             segment_desc = "High income, low spending"
         elif avg_income_cluster <= df_filtered[income_col].mean() and avg_score_cluster > df_filtered[score_col].mean():
             segment_type = "Aspirational Buyers"
             segment_color = "#f7931e"
-            segment_icon = "⭐"
             segment_desc = "Lower income, high spending"
         else:
             segment_type = "Budget-Conscious"
             segment_color = "#9b59b6"
-            segment_icon = "💰"
             segment_desc = "Lower income, low spending"
         
         st.markdown(f"""
@@ -1591,7 +1583,7 @@ with col_perf2:
                         box-shadow: var(--shadow);
                         transition: all 0.3s ease;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-                    <h4 style="margin: 0; color: {segment_color}; font-size: 1.1rem;">{segment_icon} Segment {cluster_id}</h4>
+                    <h4 style="margin: 0; color: {segment_color}; font-size: 1.1rem;">Segment {cluster_id}</h4>
                     <span style="background: {segment_color}; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">{segment_type}</span>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; font-style: italic;">{segment_desc}</p>
@@ -1631,11 +1623,12 @@ st.markdown(f"""
             <div>Last Updated: {current_time}</div>
             <div>Analyzing {len(df_filtered):,} customers</div>
             <div>{n_clusters} segments identified</div>
+            <p> Made by Arwa Abbas </p>
         </div>
     </div>
 """, unsafe_allow_html=True)
 
-# Add JavaScript for enhanced interactivity
+# Add JavaScript 
 st.markdown("""
     <script>
     document.addEventListener('DOMContentLoaded', function() {
