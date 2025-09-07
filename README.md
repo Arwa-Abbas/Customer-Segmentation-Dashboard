@@ -6,7 +6,7 @@ A modern, interactive web application built with **Streamlit** for customer segm
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Advanced Customer Segmentation:** Utilizes K-Means clustering to identify distinct customer groups based on income and spending behavior.  
 - **Interactive Visualizations:** Multiple chart types including scatter plots, 3D visualizations, radar charts, and heatmaps.  
@@ -17,7 +17,7 @@ A modern, interactive web application built with **Streamlit** for customer segm
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Python 3.x**  
 - **Streamlit** – Web application framework  
@@ -28,3 +28,6 @@ A modern, interactive web application built with **Streamlit** for customer segm
 
 ```bash
 git clone https://github.com/your-username/Customer-Segmentation-Dashboard.git
+cd Customer-Segmentation-Dashboard
+pip install -r requirements.txt
+streamlit run app.py
